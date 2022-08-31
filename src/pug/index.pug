@@ -3,12 +3,44 @@ html(lang="ru")
 	head
 		meta(charset="UTF-8")
 		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
-		title Pug
-		link(rel="stylesheet", href="css/main.css")
-	body
+		title test Vozhdaeva
+		link(rel="stylesheet", href="css/styles.min.css")
+	body.body
 		header.header
-			|это хедер
+			section.header_top
+				img.logo(alt="логотип" width='88' height='24' src='./img/content/logo.svg')
+				a.location.link(href="#")
+					img.location_icon(alt="выбор региона" width='32' height='32' src='./img/icons/city.png')
+					|Москва
+				label.label__search.hidden(for="searchbar") Строка поиска
+				input.search(type="text" name="searchbar" id="searchbar" value="" placeholder="Учебное заведение, специальность или профессия")
+				.user
+					a.user_likeCounter.link(href="#") 1
+					.user_name Екатерина
+					img.user_avatar(alt="аватар пользователя" width='32' height='32' src='./img/content/avatar.jpg')
+			nav.navContainer
+				button.btn.header_btn.nav_btn__prev
+					span.hidden прокрутить меню назад
+				ul.navigation.list
+					li.navigation_item
+						|Вузы
+					li.navigation_item
+						|Колледжи
+					li.navigation_item 
+						|Техникумы
+					li.navigation_item
+						|Училища
+					li.navigation_item
+						|Специальности
+					li.navigation_item
+						|Профессии
+					li.navigation_item
+						|Отзывы
+					li.navigation_item
+						|Учебным заведениям
+					li.navigation_item.active
+						|Тест на профориентацию
+				button.btn.header_btn.nav_btn__next
+					span.hidden прокрутить меню дальше 
 		main.main
-			|это мэйн
 		footer.footer
-			|это футер

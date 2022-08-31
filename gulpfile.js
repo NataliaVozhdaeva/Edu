@@ -41,10 +41,10 @@ function buildSass() {
         cssnano(),
       ])
     )
-    .pipe(sourcemaps.write('.'))
-    .pipe(rename('main.min.css'))
+    .pipe(rename('styles.min.css'))
     .pipe(dest('dist/css'))
     .pipe(dest('src/css'))
+    .pipe(sourcemaps.write('.'))
     .pipe(browserSync.stream());
 }
 
@@ -66,7 +66,13 @@ function cleanDist() {
   return del('dist/**/*', { force: true });
 }
 
-exports.build = series(cleanDist, buildHTML, buildSass, buildJs);
+function copy() {
+  return src(['src/img/**/*.*', 'src/css/**/*.css'], {
+    base: 'src/',
+  }).pipe(dest('dist'));
+}
+
+exports.build = series(cleanDist, buildHTML, buildSass, buildJs, copy);
 exports.default = series(
   [buildHTML, buildSass, buildJs],
   parallel(browsersync, serve)

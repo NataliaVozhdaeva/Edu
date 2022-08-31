@@ -3,12 +3,36 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Pug</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>test Vozhdaeva</title>
+    <link rel="stylesheet" href="css/styles.min.css">
   </head>
-  <body>
-    <header class="header">это хедер</header>
-    <main class="main">это мэйн</main>
-    <footer class="footer">это футер</footer>
+  <body class="body">
+    <header class="header">
+      <section class="header_top"><img class="logo" alt="логотип" width="88" height="24" src="./img/content/logo.svg"><a class="location link" href="#"><img class="location_icon" alt="выбор региона" width="32" height="32" src="./img/icons/city.png">Москва</a>
+        <label class="label__search hidden" for="searchbar">Строка поиска</label>
+        <input class="search" type="text" name="searchbar" id="searchbar" value="" placeholder="Учебное заведение, специальность или профессия">
+        <div class="user"><a class="user_likeCounter link" href="#">1</a>
+          <div class="user_name">Екатерина</div><img class="user_avatar" alt="аватар пользователя" width="32" height="32" src="./img/content/avatar.jpg">
+        </div>
+      </section>
+      <nav class="navContainer">
+        <button class="btn header_btn nav_btn__prev"><span class="hidden">прокрутить меню назад</span></button>
+        <ul class="navigation list">
+          <li class="navigation_item">Вузы</li>
+          <li class="navigation_item">Колледжи</li>
+          <li class="navigation_item">
+             Техникумы</li>
+          <li class="navigation_item">Училища</li>
+          <li class="navigation_item">Специальности</li>
+          <li class="navigation_item">Профессии</li>
+          <li class="navigation_item">Отзывы</li>
+          <li class="navigation_item">Учебным заведениям</li>
+          <li class="navigation_item active">Тест на профориентацию</li>
+        </ul>
+        <button class="btn header_btn nav_btn__next"><span class="hidden">прокрутить меню дальше </span></button>
+      </nav>
+    </header>
+    <main class="main"></main>
+    <footer class="footer"></footer>
   </body>
 </html>
