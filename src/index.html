@@ -8,31 +8,36 @@
   </head>
   <body class="body">
     <header class="header">
-      <section class="header_top"><img class="logo" alt="логотип" width="88" height="24" src="./img/content/logo.svg"><a class="location link" href="#"><img class="location_icon" alt="выбор региона" width="32" height="32" src="./img/icons/city.png">Москва</a>
+      <section class="header_top"><img class="logo header_logo" alt="логотип" width="88" height="24" src="./img/content/logo.svg"><a class="header_location link" href="#"><img class="header_location_icon" alt="выбор региона" width="32" height="32" src="./img/icons/city.png">Москва</a>
         <label class="label__search hidden" for="searchbar">Строка поиска</label>
-        <input class="search" type="text" name="searchbar" id="searchbar" value="" placeholder="Учебное заведение, специальность или профессия">
-        <div class="user"><a class="user_likeCounter link" href="#">1</a>
+        <input class="search header_search" type="text" name="searchbar" id="searchbar" value="" placeholder="Учебное заведение, специальность или профессия">
+        <div class="user header_user"><a class="user_likeCounter link" href="#">1</a>
           <div class="user_name">Екатерина</div><img class="user_avatar" alt="аватар пользователя" width="32" height="32" src="./img/content/avatar.jpg">
         </div>
       </section>
-      <nav class="navContainer">
-        <button class="btn header_btn nav_btn__prev"><span class="hidden">прокрутить меню назад</span></button>
-        <ul class="navigation list">
-          <li class="navigation_item">Вузы</li>
-          <li class="navigation_item">Колледжи</li>
-          <li class="navigation_item">
-             Техникумы</li>
-          <li class="navigation_item">Училища</li>
-          <li class="navigation_item">Специальности</li>
-          <li class="navigation_item">Профессии</li>
-          <li class="navigation_item">Отзывы</li>
-          <li class="navigation_item">Учебным заведениям</li>
-          <li class="navigation_item active">Тест на профориентацию</li>
+      <nav class="header_navContainer">
+        <button class="btn header_btn header_btn__prev notDisplay"><span class="hidden">прокрутить меню назад</span></button>
+        <ul class="navigation list header_navigation">
+          <li class="navigation_item"><a class="navigation_link link" href="#">Вузы</a></li>
+          <li class="navigation_item active"><a class="navigation_link link" href="#">Колледжи</a></li>
+          <li class="navigation_item"> <a class="navigation_link link" href="#">Техникумы</a></li>
+          <li class="navigation_item"><a class="navigation_link link" href="#">Училища</a></li>
+          <li class="navigation_item navigation_item__contentSub"><a class="navigation_link link" href="#">Специальности</a>
+            <ul class="sublink list">
+              <li class="sublink_item"><a class="sublink_link link" href="#">Высшее </a></li>
+              <li class="sublink_item"><a class="sublink_link link" href="#">Среднее</a></li>
+            </ul>
+          </li>
+          <li class="navigation_item"><a class="navigation_link link" href="#">Профессии</a></li>
+          <li class="navigation_item"><a class="navigation_link link" href="#">Отзывы</a></li>
+          <li class="navigation_item"><a class="navigation_link link" href="#">Учебным заведениям</a></li>
+          <li class="navigation_item"><a class="navigation_link link" href="#">Тест на профориентацию</a></li>
         </ul>
-        <button class="btn header_btn nav_btn__next"><span class="hidden">прокрутить меню дальше </span></button>
+        <button class="btn header_btn header_btn__next"><span class="hidden">прокрутить меню дальше </span></button>
       </nav>
     </header>
     <main class="main"></main>
     <footer class="footer"></footer>
   </body>
+  <script src="js/scripts.min.js"></script>
 </html>

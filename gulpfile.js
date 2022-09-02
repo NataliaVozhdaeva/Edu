@@ -49,8 +49,8 @@ function buildSass() {
 }
 
 function buildJs() {
-  return src('src/js/index.js')
-    .pipe(rename('main.min.js'))
+  return src('src/js/scripts.js')
+    .pipe(rename('scripts.min.js'))
     .pipe(dest('src/js'))
     .pipe(dest('dist/js'))
     .pipe(browserSync.stream());
