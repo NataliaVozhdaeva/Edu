@@ -8,10 +8,36 @@ html(lang="ru")
 	body.body
 		header.header
 			section.header_top
-				img.logo.header_logo(alt="логотип" width='88' height='24' src='./img/content/logo.svg')
+				img.header_logo.logo(alt="логотип" width='88' height='24' src='./img/content/logo.svg')
 				a.header_location.link(href="#")
 					img.header_location_icon(alt="выбор региона" width='32' height='32' src='./img/icons/city.png')
 					|Москва
+				.citySearchMenu
+					input.citySearch(type="text" placeholder="Регион, город, населенный пункт" autocomplete="none")
+					.citySearchMenu_doneContainer 
+						span.citySearchMenu_done Москва
+							span.citySearchMenu_delBtn X
+						span.citySearchMenu_done Архангельск
+							span.citySearchMenu_delBtn X
+						span.citySearchMenu_done Ставропольский край
+							span.citySearchMenu_delBtn X
+					.city_container
+						.city_item 
+							.city_name Москва
+						.city_item 
+							.city_name Архангельск
+							.city_state Архангельская область
+						.city_item Ставропольский край
+						.city_item 
+							.city_name Кемерово
+							.city_state Кузбасс
+						.city_item 
+							.city_name Воронеж
+							.city_state Воронежская область
+						.city_item 				
+							.city_name Барнаул
+							.city_state Алтайский край	
+					button.citySearchMenu_saveBtn.btn Сохранить	
 				label.label__search.hidden(for="searchbar") Строка поиска
 				input.search.header_search(type="text" name="searchbar" id="searchbar" value="" placeholder="Учебное заведение, специальность или профессия")
 				.user.header_user

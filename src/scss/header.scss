@@ -43,8 +43,7 @@ $hover-color: #f1f1f1;
     }
   }
   &_navContainer {
-    display: flex; /* 
-    overflow: hidden; */
+    display: flex;
   }
 
   &_navigation {
@@ -201,5 +200,101 @@ $hover-color: #f1f1f1;
     &:hover {
       background-color: $hover-color;
     }
+  }
+}
+
+.citySearchMenu {
+  border-radius: 10px;
+  background: #fff;
+  width: 400px;
+  height: 500px;
+  z-index: 1;
+  position: absolute;
+  top: 70px;
+  left: 456px;
+  padding: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 7px 38px rgba(44, 62, 106, 0.25);
+  box-sizing: border-box;
+  overflow: hidden;
+
+  &_doneContainer {
+    padding: 12px 16px;
+    border-bottom: 1px solid #d8d8d8;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+
+  &_done {
+    background: #0656b4;
+    border-radius: 49px;
+    color: #fff;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    padding: 9px 35px 9px 17px;
+    line-height: 22px;
+    position: relative;
+  }
+
+  &_delBtn {
+    color: #fff;
+    position: absolute;
+    top: 9px;
+    right: 17px;
+    cursor: pointer;
+  }
+
+  &_saveBtn {
+    font-family: Formular;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    width: 100%;
+    padding: 16px 0;
+    background: #0656b4;
+
+    &:hover {
+      background-color: lighten(#0656b4, 6.25%);
+    }
+  }
+}
+
+.citySearch {
+  border-radius: 100px;
+  height: 48px;
+  font-size: 14px;
+  padding: 0 40px 0 25px;
+  border: 2px solid #abc8ea;
+  margin: 0 16px;
+  flex-shrink: 0;
+}
+
+.city {
+  &_container {
+    overflow-y: scroll;
+  }
+  &_item {
+    font-size: 14px;
+    line-height: 22px;
+    padding: 11px 16px;
+    cursor: pointer;
+  }
+
+  &_item:hover {
+    background-color: #f1f1f1;
+  }
+
+  &_state {
+    font-size: 12px;
+    line-height: 20px;
+    color: #767676;
+    display: block;
   }
 }
