@@ -26,37 +26,59 @@ menuArrowPrev.addEventListener('click', changeMenuPosition);
 
 /* Код для вкладки выбора регионов */
 
-const cities = document.querySelectorAll('.city_item');
+const citiesList = document.querySelector('.city_container');
 
-/* const addToFiltered = (el) => {
-  const filteredCitiesContainer = document.querySelector(
-    '.citySearchMenu_doneContainer'
-  );
-  const filteredCity = document.createElement('span');
-  filteredCity.classList.add('citySearchMenu_done');
-  filteredCity.textContent = el.textcontent;
-  filteredCitiesContainer.appendChild(filteredCity);
-}; */
+addCityToFiltered = (e) => {
+  if (!e.target.classList.contains('city_item')) {
+    var filteredCity = e.target.parentNode.firstElementChild;
+  } else {
+    var filteredCity = e.target.firstElementChild;
+  }
+  console.log(filteredCity.classList);
+};
 
-for (let i = 0; i < cities.length; i++) {
+citiesList.addEventListener('click', addCityToFiltered);
+
+/*const cities = document.querySelectorAll('.city_item');
+
+ for (let i = 0; i < cities.length; i++) {
   cities[i].addEventListener('click', function () {
-    const filteredCitiesContainer = document.querySelector(
-      '.citySearchMenu_doneContainer'
-    );
-    const filteredCity = document.createElement('span');
-    filteredCity.classList.add('citySearchMenu_done');
-    filteredCity.textContent = cities[i].textcontent;
-    filteredCitiesContainer.appendChild(filteredCity);
+    cities[i].classList.add('activeCity');
+
+    if (cities[i].classList.contains('activeCity')) {
+      const filteredCitiesContainer = document.querySelector(
+        '.citySearchMenu_doneContainer'
+      );
+      const filteredCity = document.createElement('span');
+      const delCityBtn = document.createElement('span');
+      filteredCity.classList.add('citySearchMenu_done');
+      delCityBtn.classList.add('citySearchMenu_delBtn');
+      filteredCity.textContent = cities[i].firstElementChild.textContent;
+      delCityBtn.textContent = 'X';
+      filteredCitiesContainer.appendChild(filteredCity);
+      filteredCity.appendChild(delCityBtn);
+
+      let filteredCities = document.querySelectorAll('.citySearchMenu_done');
+      for (let i = 0; i < filteredCities.length; i++) {
+        const delCityBtn = filteredCities[i].querySelector(
+          '.citySearchMenu_delBtn'
+        );
+        const delCityFromFiltered = () => {
+          filteredCities[i].remove();
+        };
+        delCityBtn.addEventListener('click', delCityFromFiltered);
+      }
+    } else {
+      let filteredCities = document.querySelectorAll('.citySearchMenu_done');
+      for (let i = 0; i < filteredCities.length; i++) {
+        if (
+          (filteredCities[i].textContent =
+            cities[i].firstElementChild.textContent)
+        ) {
+          filteredCities[i].remove();
+        }
+      }
+    }
   });
 }
-
-//console.log(cities);
-
-const filteredCities = document.querySelectorAll('.citySearchMenu_done');
-
-for (let i = 0; i < filteredCities.length; i++) {
-  const delCityBtn = filteredCities[i].querySelector('.citySearchMenu_delBtn');
-  delCityBtn.addEventListener('click', function () {
-    filteredCities[i].remove();
-  });
-}
+ */

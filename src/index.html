@@ -11,29 +11,15 @@
       <section class="header_top"><img class="header_logo logo" alt="логотип" width="88" height="24" src="./img/content/logo.svg"><a class="header_location link" href="#"><img class="header_location_icon" alt="выбор региона" width="32" height="32" src="./img/icons/city.png">Москва</a>
         <div class="citySearchMenu">
           <input class="citySearch" type="text" placeholder="Регион, город, населенный пункт" autocomplete="none">
-          <div class="citySearchMenu_doneContainer"> <span class="citySearchMenu_done">Москва<span class="citySearchMenu_delBtn">X</span></span><span class="citySearchMenu_done">Архангельск<span class="citySearchMenu_delBtn">X</span></span><span class="citySearchMenu_done">Ставропольский край<span class="citySearchMenu_delBtn">X</span></span></div>
-          <div class="city_container">
-            <div class="city_item"> 
-              <div class="city_name">Москва</div>
-            </div>
-            <div class="city_item"> 
-              <div class="city_name">Архангельск</div>
-              <div class="city_state">Архангельская область</div>
-            </div>
-            <div class="city_item">Ставропольский край</div>
-            <div class="city_item"> 
-              <div class="city_name">Кемерово</div>
-              <div class="city_state">Кузбасс</div>
-            </div>
-            <div class="city_item"> 
-              <div class="city_name">Воронеж</div>
-              <div class="city_state">Воронежская область</div>
-            </div>
-            <div class="city_item">				
-              <div class="city_name">Барнаул</div>
-              <div class="city_state">Алтайский край	</div>
-            </div>
-          </div>
+          <div class="citySearchMenu_doneContainer"> </div>
+          <ul class="city_container list">
+            <li class="city_item"> <a class="city_name link">Москва</a></li>
+            <li class="city_item"> <a class="city_name link">Архангельск</a><a class="city_state link">Архангельская область</a></li>
+            <li class="city_item"> <a class="city_state link">Ставропольский край</a></li>
+            <li class="city_item"> <a class="city_name link">Кемерово</a><a class="city_state link">Кузбасс</a></li>
+            <li class="city_item"> <a class="city_name link">Воронеж</a><a class="city_state link">Воронежская область</a></li>
+            <li class="city_item">				<a class="city_name link">Барнаул</a><a class="city_state link">Алтайский край	</a></li>
+          </ul>
           <button class="citySearchMenu_saveBtn btn">Сохранить	</button>
         </div>
         <label class="label__search hidden" for="searchbar">Строка поиска</label>

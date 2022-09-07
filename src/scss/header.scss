@@ -181,6 +181,10 @@ $hover-color: #f1f1f1;
   }
 }
 
+.activeCity {
+  background-color: $hover-color;
+}
+
 .navigation_item:hover > .sublink,
 .sublink:hover {
   visibility: visible;
@@ -280,18 +284,19 @@ $hover-color: #f1f1f1;
   &_container {
     overflow-y: scroll;
   }
+
   &_item {
     font-size: 14px;
     line-height: 22px;
     padding: 11px 16px;
     cursor: pointer;
+
+    &:hover {
+      background-color: $hover-color;
+    }
   }
 
-  &_item:hover {
-    background-color: #f1f1f1;
-  }
-
-  &_state {
+  &_state:nth-child(2) {
     font-size: 12px;
     line-height: 20px;
     color: #767676;

@@ -15,28 +15,23 @@ html(lang="ru")
 				.citySearchMenu
 					input.citySearch(type="text" placeholder="Регион, город, населенный пункт" autocomplete="none")
 					.citySearchMenu_doneContainer 
-						span.citySearchMenu_done Москва
-							span.citySearchMenu_delBtn X
-						span.citySearchMenu_done Архангельск
-							span.citySearchMenu_delBtn X
-						span.citySearchMenu_done Ставропольский край
-							span.citySearchMenu_delBtn X
-					.city_container
-						.city_item 
-							.city_name Москва
-						.city_item 
-							.city_name Архангельск
-							.city_state Архангельская область
-						.city_item Ставропольский край
-						.city_item 
-							.city_name Кемерово
-							.city_state Кузбасс
-						.city_item 
-							.city_name Воронеж
-							.city_state Воронежская область
-						.city_item 				
-							.city_name Барнаул
-							.city_state Алтайский край	
+					ul.city_container.list
+						li.city_item 
+							a.city_name.link Москва
+						li.city_item 
+							a.city_name.link Архангельск
+							a.city_state.link Архангельская область
+						li.city_item 
+							a.city_state.link Ставропольский край
+						li.city_item 
+							a.city_name.link Кемерово
+							a.city_state.link Кузбасс
+						li.city_item 
+							a.city_name.link Воронеж
+							a.city_state.link Воронежская область
+						li.city_item 				
+							a.city_name.link Барнаул
+							a.city_state.link Алтайский край	
 					button.citySearchMenu_saveBtn.btn Сохранить	
 				label.label__search.hidden(for="searchbar") Строка поиска
 				input.search.header_search(type="text" name="searchbar" id="searchbar" value="" placeholder="Учебное заведение, специальность или профессия")
