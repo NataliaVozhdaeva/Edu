@@ -27,19 +27,45 @@ menuArrowPrev.addEventListener('click', changeMenuPosition);
 /* Код для вкладки выбора регионов */
 
 const citiesList = document.querySelector('.city_container');
+const filteredCitiesContainer = document.querySelector(
+  '.citySearchMenu_doneContainer'
+);
 
 addCityToFiltered = (e) => {
   if (!e.target.classList.contains('city_item')) {
-    var filteredCity = e.target.parentNode.firstElementChild;
+    var choosenCity = e.target.parentNode.firstElementChild;
   } else {
-    var filteredCity = e.target.firstElementChild;
+    var choosenCity = e.target.firstElementChild;
   }
-  console.log(filteredCity.classList);
-};
+
+  if (choosenCity.parentNode.classList.contains('activeCity')) {
+    choosenCity.parentNode.classList.remove('activeCity');
+
+    let filteredCities = document.querySelectorAll('.citySearchMenu_done');
+    for (let filteredCity of filteredCities) {
+      if (filteredCity.textContent === choosenCity.textContent) {
+        filteredCity.remove();
+      }
+    }
+  } else {
+    choosenCity.parentNode.classList.add('activeCity');
+    const filteredCity = document.createElement('div');
+    const delCityBtn = document.createElement('img');
+    filteredCity.classList.add('citySearchMenu_done');
+    delCityBtn.classList.add('citySearchMenu_delBtn');
+    filteredCity.textContent = choosenCity.textContent;
+    delCityBtn.setAttribute('src', '../img/icons/close.png');
+    delCityBtn.setAttribute('width', '14px');
+    filteredCitiesContainer.appendChild(filteredCity);
+    filteredCity.appendChild(delCityBtn);
+  }
+}; //addCityToFiltered
 
 citiesList.addEventListener('click', addCityToFiltered);
 
-/*const cities = document.querySelectorAll('.city_item');
+/*
+    
+    const cities = document.querySelectorAll('.city_item');
 
  for (let i = 0; i < cities.length; i++) {
   cities[i].addEventListener('click', function () {

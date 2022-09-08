@@ -244,11 +244,12 @@ $hover-color: #f1f1f1;
   }
 
   &_delBtn {
-    color: #fff;
+    // color: #fff;
     position: absolute;
-    top: 9px;
-    right: 17px;
+    top: 13px;
+    right: 13px;
     cursor: pointer;
+    display: inline-block;
   }
 
   &_saveBtn {
