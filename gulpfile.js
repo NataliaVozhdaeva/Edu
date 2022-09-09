@@ -29,11 +29,12 @@ function buildHTML() {
 }
 
 function buildSass() {
-  return src('src/scss/**/*.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .on('error', sass.logError)
-    .pipe(
+  return (
+    src('src/scss/**/*.scss')
+      .pipe(sourcemaps.init())
+      .pipe(sass())
+      .on('error', sass.logError)
+      /*  .pipe(
       postcss([
         autoprefixer({
           overrideBrowserslist: ['last 2 versions'],
@@ -41,19 +42,22 @@ function buildSass() {
         cssnano(),
       ])
     )
-    .pipe(rename('styles.min.css'))
-    .pipe(dest('dist/css'))
-    .pipe(dest('src/css'))
-    .pipe(sourcemaps.write('.'))
-    .pipe(browserSync.stream());
+    .pipe(rename('styles.min.css')) 
+      .pipe(dest('dist/css'))*/
+      .pipe(dest('src/css'))
+      .pipe(sourcemaps.write('.'))
+      .pipe(browserSync.stream())
+  );
 }
 
 function buildJs() {
-  return src('src/js/scripts.js')
-    .pipe(rename('scripts.min.js'))
-    .pipe(dest('src/js'))
-    .pipe(dest('dist/js'))
-    .pipe(browserSync.stream());
+  return (
+    src('src/js/scripts.js')
+      //.pipe(rename('scripts.min.js'))
+      //.pipe(dest('src/js'))
+      // .pipe(dest('dist/js'))
+      .pipe(browserSync.stream())
+  );
 }
 
 function serve() {

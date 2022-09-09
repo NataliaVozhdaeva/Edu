@@ -211,7 +211,7 @@ $hover-color: #f1f1f1;
   border-radius: 10px;
   background: #fff;
   width: 400px;
-  height: 500px;
+  max-height: 500px;
   z-index: 1;
   position: absolute;
   top: 70px;
@@ -244,12 +244,18 @@ $hover-color: #f1f1f1;
   }
 
   &_delBtn {
-    // color: #fff;
     position: absolute;
-    top: 13px;
-    right: 13px;
-    cursor: pointer;
-    display: inline-block;
+    top: 12px;
+    right: 17px;
+    width: 14px;
+    height: 14px;
+    background-color: rgba(255, 255, 255, 0);
+    &::after {
+      content: url('../img/icons/close.png');
+      display: block;
+      width: 14px;
+      height: 14px;
+    }
   }
 
   &_saveBtn {

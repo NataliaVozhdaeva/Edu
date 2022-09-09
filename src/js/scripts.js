@@ -30,6 +30,20 @@ const citiesList = document.querySelector('.city_container');
 const filteredCitiesContainer = document.querySelector(
   '.citySearchMenu_doneContainer'
 );
+const cities = document.querySelectorAll('.city_item');
+
+deleteCityFromFiltered = (e) => {
+  if (e.target.classList.contains('btn')) {
+    e.target.parentNode.remove();
+    for (let city of cities) {
+      if (
+        city.firstElementChild.textContent === e.target.parentNode.textContent
+      ) {
+        city.classList.remove('activeCity');
+      }
+    }
+  }
+}; //deleteCityFromFiltered
 
 addCityToFiltered = (e) => {
   if (!e.target.classList.contains('city_item')) {
@@ -50,22 +64,22 @@ addCityToFiltered = (e) => {
   } else {
     choosenCity.parentNode.classList.add('activeCity');
     const filteredCity = document.createElement('div');
-    const delCityBtn = document.createElement('img');
+    const delCityBtn = document.createElement('button');
     filteredCity.classList.add('citySearchMenu_done');
     delCityBtn.classList.add('citySearchMenu_delBtn');
+    delCityBtn.classList.add('btn');
     filteredCity.textContent = choosenCity.textContent;
-    delCityBtn.setAttribute('src', '../img/icons/close.png');
-    delCityBtn.setAttribute('width', '14px');
     filteredCitiesContainer.appendChild(filteredCity);
     filteredCity.appendChild(delCityBtn);
   }
+  filteredCitiesContainer.addEventListener('click', deleteCityFromFiltered);
 }; //addCityToFiltered
 
 citiesList.addEventListener('click', addCityToFiltered);
 
 /*
     
-    const cities = document.querySelectorAll('.city_item');
+const cities = document.querySelectorAll('.city_item');
 
  for (let i = 0; i < cities.length; i++) {
   cities[i].addEventListener('click', function () {
