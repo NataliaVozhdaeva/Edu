@@ -1,3 +1,20 @@
+const locationLink = document.querySelector('.header_location.link');
+
+openMenu = async () => {
+  const requestURL = '../mock/data.json';
+
+  try {
+    const response = await fetch(requestURL);
+    const result = await response.json();
+
+    console.log(result);
+  } catch (error) {
+    console.log('something goes wrong' + ' - ' + error);
+  }
+};
+
+locationLink.addEventListener('click', openMenu);
+
 /* прокрутка меню в шапке */
 
 const menuArrowNext = document.querySelector('.header_btn__next');
@@ -31,6 +48,7 @@ const filteredCitiesContainer = document.querySelector(
   '.citySearchMenu_doneContainer'
 );
 const cities = document.querySelectorAll('.city_item');
+const citySearch = document.querySelector('.citySearch');
 
 deleteCityFromFiltered = (e) => {
   if (e.target.classList.contains('btn')) {
@@ -77,48 +95,13 @@ addCityToFiltered = (e) => {
 
 citiesList.addEventListener('click', addCityToFiltered);
 
-/*
-    
-const cities = document.querySelectorAll('.city_item');
-
- for (let i = 0; i < cities.length; i++) {
-  cities[i].addEventListener('click', function () {
-    cities[i].classList.add('activeCity');
-
-    if (cities[i].classList.contains('activeCity')) {
-      const filteredCitiesContainer = document.querySelector(
-        '.citySearchMenu_doneContainer'
-      );
-      const filteredCity = document.createElement('span');
-      const delCityBtn = document.createElement('span');
-      filteredCity.classList.add('citySearchMenu_done');
-      delCityBtn.classList.add('citySearchMenu_delBtn');
-      filteredCity.textContent = cities[i].firstElementChild.textContent;
-      delCityBtn.textContent = 'X';
-      filteredCitiesContainer.appendChild(filteredCity);
-      filteredCity.appendChild(delCityBtn);
-
-      let filteredCities = document.querySelectorAll('.citySearchMenu_done');
-      for (let i = 0; i < filteredCities.length; i++) {
-        const delCityBtn = filteredCities[i].querySelector(
-          '.citySearchMenu_delBtn'
-        );
-        const delCityFromFiltered = () => {
-          filteredCities[i].remove();
-        };
-        delCityBtn.addEventListener('click', delCityFromFiltered);
-      }
-    } else {
-      let filteredCities = document.querySelectorAll('.citySearchMenu_done');
-      for (let i = 0; i < filteredCities.length; i++) {
-        if (
-          (filteredCities[i].textContent =
-            cities[i].firstElementChild.textContent)
-        ) {
-          filteredCities[i].remove();
-        }
-      }
+/* cityOffer = (e) => {
+  for (i = 0; i < cities.length; i++) {
+    if (cities[i].firstElementChild.textContent) {
     }
-  });
-}
- */
+  }
+
+  console.log(e.target.value);
+};
+
+citySearch.addEventListener('input', cityOffer); */
