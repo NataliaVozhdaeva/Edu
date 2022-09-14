@@ -9,12 +9,12 @@
   <body class="body">
     <header class="header">
       <section class="header_top"><img class="header_logo logo" alt="логотип" width="88" height="24" src="./img/content/logo.svg"><a class="header_location link" href="#"><img class="header_location_icon" alt="выбор региона" width="32" height="32" src="./img/icons/city.png">Москва</a>
-        <div class="citySearchMenu">
+        <form class="citySearchMenu notDisplay">
           <input class="citySearch" type="text" placeholder="Регион, город, населенный пункт" autocomplete="none">
           <div class="citySearchMenu_doneContainer"> </div>
           <ul class="city_container list"></ul>
-          <button class="citySearchMenu_saveBtn btn">Сохранить	</button>
-        </div>
+          <button class="citySearchMenu_saveBtn btn" type="submit" disabled>Сохранить	</button>
+        </form>
         <label class="label__search hidden" for="searchbar">Строка поиска</label>
         <input class="search header_search" type="text" name="searchbar" id="searchbar" value="" placeholder="Учебное заведение, специальность или профессия">
         <div class="user header_user"><a class="user_likeCounter link" href="#">1</a>

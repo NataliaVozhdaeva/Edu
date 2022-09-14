@@ -266,13 +266,18 @@ $hover-color: #f1f1f1;
     text-align: center;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #fff;
+    color: #f1f1f1;
     width: 100%;
     padding: 16px 0;
     background: #0656b4;
 
     &:hover {
       background-color: lighten(#0656b4, 6.25%);
+    }
+
+    &:disabled {
+      background-color: #f1f1f1;
+      color: #a7a7a7;
     }
   }
 }

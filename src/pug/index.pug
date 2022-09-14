@@ -12,11 +12,11 @@ html(lang="ru")
 				a.header_location.link(href="#")
 					img.header_location_icon(alt="выбор региона" width='32' height='32' src='./img/icons/city.png')
 					|Москва
-				.citySearchMenu
+				form.citySearchMenu.notDisplay
 					input.citySearch(type="text" placeholder="Регион, город, населенный пункт" autocomplete="none")
 					.citySearchMenu_doneContainer 
 					ul.city_container.list
-					button.citySearchMenu_saveBtn.btn Сохранить	
+					button.citySearchMenu_saveBtn.btn(type="submit" disabled) Сохранить	
 				label.label__search.hidden(for="searchbar") Строка поиска
 				input.search.header_search(type="text" name="searchbar" id="searchbar" value="" placeholder="Учебное заведение, специальность или профессия")
 				.user.header_user

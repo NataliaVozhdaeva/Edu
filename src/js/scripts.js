@@ -1,17 +1,56 @@
+/* получение данных с сервера и отрисовка меню городов */
+
 const locationLink = document.querySelector('.header_location.link');
+let result;
+const citiesList = document.querySelector('.city_container');
 
 openMenu = async () => {
+  const citySearchMenu = document.querySelector('.citySearchMenu');
+  citySearchMenu.classList.toggle('notDisplay');
   const requestURL = '../mock/data.json';
-
   try {
     const response = await fetch(requestURL);
-    const result = await response.json();
-
-    console.log(result);
+    result = await response.json();
   } catch (error) {
-    console.log('something goes wrong' + ' - ' + error);
+    console.log(error);
   }
+  createCityLi();
 };
+
+createCityLi = () => {
+  for (let key in result) {
+    if (result[key].length < 2) {
+      const cityItem = document.createElement('li');
+      cityItem.classList.add('city_item');
+      citiesList.appendChild(cityItem);
+
+      const cityItemName = document.createElement('a');
+      cityItemName.classList.add('link');
+      cityItemName.classList.add('city_name');
+      cityItemName.textContent = result[key];
+      cityItem.appendChild(cityItemName);
+    } else {
+      for (let oneCity of result[key]) {
+        const cityItem = document.createElement('li');
+        cityItem.classList.add('city_item');
+        citiesList.appendChild(cityItem);
+
+        const cityItemName = document.createElement('a');
+        cityItemName.classList.add('link');
+        cityItemName.classList.add('city_name');
+        cityItemName.textContent = oneCity;
+
+        const cityItemState = document.createElement('a');
+        cityItemState.classList.add('link');
+        cityItemState.classList.add('city_state');
+        cityItemState.textContent = key;
+
+        cityItem.appendChild(cityItemName);
+        cityItem.appendChild(cityItemState);
+      }
+    }
+  }
+}; //createCityLi
 
 locationLink.addEventListener('click', openMenu);
 
@@ -43,16 +82,15 @@ menuArrowPrev.addEventListener('click', changeMenuPosition);
 
 /* Код для вкладки выбора регионов */
 
-const citiesList = document.querySelector('.city_container');
 const filteredCitiesContainer = document.querySelector(
   '.citySearchMenu_doneContainer'
 );
-const cities = document.querySelectorAll('.city_item');
 const citySearch = document.querySelector('.citySearch');
+const saveCityBtn = document.querySelector('.citySearchMenu_saveBtn');
 
 deleteCityFromFiltered = (e) => {
+  const cities = document.querySelectorAll('.city_item');
   if (e.target.classList.contains('btn')) {
-    e.target.parentNode.remove();
     for (let city of cities) {
       if (
         city.firstElementChild.textContent === e.target.parentNode.textContent
@@ -60,10 +98,15 @@ deleteCityFromFiltered = (e) => {
         city.classList.remove('activeCity');
       }
     }
+    e.target.parentNode.remove();
+    if (filteredCitiesContainer.childNodes.length <= 1) {
+      saveCityBtn.setAttribute('disabled', 'true');
+    }
   }
 }; //deleteCityFromFiltered
 
 addCityToFiltered = (e) => {
+  saveCityBtn.removeAttribute('disabled');
   if (!e.target.classList.contains('city_item')) {
     var choosenCity = e.target.parentNode.firstElementChild;
   } else {
@@ -79,6 +122,9 @@ addCityToFiltered = (e) => {
         filteredCity.remove();
       }
     }
+    if (filteredCitiesContainer.childNodes.length <= 1) {
+      saveCityBtn.setAttribute('disabled', 'true');
+    }
   } else {
     choosenCity.parentNode.classList.add('activeCity');
     const filteredCity = document.createElement('div');
@@ -90,10 +136,15 @@ addCityToFiltered = (e) => {
     filteredCitiesContainer.appendChild(filteredCity);
     filteredCity.appendChild(delCityBtn);
   }
+
   filteredCitiesContainer.addEventListener('click', deleteCityFromFiltered);
 }; //addCityToFiltered
 
 citiesList.addEventListener('click', addCityToFiltered);
+
+saveCityBtn.addEventListener('click', function () {
+  console.log('hi');
+});
 
 /* cityOffer = (e) => {
   for (i = 0; i < cities.length; i++) {
