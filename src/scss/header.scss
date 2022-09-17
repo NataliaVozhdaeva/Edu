@@ -295,6 +295,7 @@ $hover-color: #f1f1f1;
 .city {
   &_container {
     overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   &_item {
@@ -313,5 +314,55 @@ $hover-color: #f1f1f1;
     line-height: 20px;
     color: #767676;
     display: block;
+  }
+}
+
+.box {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  font-size: 50px;
+  position: relative;
+  margin: 0.25em 0;
+  vertical-align: center;
+  transition: 0.3s color, 0.3s border, 0.3s transform, 0.3s opacity;
+}
+
+.loader {
+  box-shadow: inset 0 0 0 0.1em currentcolor;
+  border-radius: 50%;
+  position: relative;
+  margin-left: 50%;
+  &:before {
+    content: '';
+    display: block;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+    position: absolute;
+    right: 1.2em;
+    top: 0;
+    box-shadow: inset 0 0 0 0.1em currentcolor;
+  }
+  &:after {
+    border: 0.2em solid currentcolor;
+    box-shadow: -1.2em 0 0 0 currentcolor;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    left: 50%;
+    top: 25%;
+    position: absolute;
+    content: '';
+    animation: loader-27 2s linear infinite alternate;
+  }
+}
+
+@keyframes loader-27 {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 0.5em;
   }
 }

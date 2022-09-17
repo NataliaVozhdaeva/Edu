@@ -4,9 +4,7 @@ const locationLink = document.querySelector('.header_location.link');
 let result;
 const citiesList = document.querySelector('.city_container');
 
-openMenu = async () => {
-  const citySearchMenu = document.querySelector('.citySearchMenu');
-  citySearchMenu.classList.toggle('notDisplay');
+getData = async () => {
   const requestURL = '../mock/data.json';
   try {
     const response = await fetch(requestURL);
@@ -14,10 +12,35 @@ openMenu = async () => {
   } catch (error) {
     console.log(error);
   }
-  createCityLi();
+  return result;
+}; //получаем данные
+
+setLoader = () => {
+  const loaderBox = document.createElement('li');
+  loaderBox.classList.add('box');
+  citiesList.appendChild(loaderBox);
+  loaderBox.classList.add('loader');
+}; //создаем лоадер
+
+openMenu = async () => {
+  const citySearchMenu = document.querySelector('.citySearchMenu');
+  citySearchMenu.classList.toggle('notDisplay');
+  setLoader();
+  await getData();
+  if (result) {
+    createCityLi();
+  } else {
+    document.querySelector('.loader').remove();
+    const errorMessage = document.createElement('li');
+    errorMessage.classList.add('city_item');
+    errorMessage.textContent =
+      'Список городов сейчас недоступен, но мы вот-вот все починим:)';
+    citiesList.appendChild(errorMessage);
+  }
 };
 
 createCityLi = () => {
+  document.querySelector('.loader').remove();
   for (let key in result) {
     if (result[key].length < 2) {
       const cityItem = document.createElement('li');
