@@ -1,8 +1,34 @@
+/* прокрутка меню в шапке */
+
+const menuArrowNext = document.querySelector('.header_btn__next');
+const menuArrowPrev = document.querySelector('.header_btn__prev');
+const headerNav = document.querySelector('.header_navigation');
+const navLastChild = document.querySelector('.navigation_item:last-child');
+const navFirstChild = document.querySelector('.navigation_item:first-child');
+const nav2ndChild = document.querySelector('.navigation_item:nth-child(2)');
+/* Можно было бы применить эффект угасания текста только к первому и последнему элементам как в макете 
+и укоротить код, но при небольшой ширине первого красивее накладывать эффект на второй */
+
+const toggleMenuItemsClass = (el1, el2, className) => {
+  el1.classList.toggle(className);
+  el2.classList.toggle(className);
+};
+
+const changeMenuPosition = () => {
+  headerNav.classList.toggle('translateToLeft');
+  navFirstChild.classList.toggle('hidden');
+  toggleMenuItemsClass(navLastChild, nav2ndChild, 'active');
+  toggleMenuItemsClass(menuArrowNext, menuArrowPrev, 'notDisplay');
+};
+
+menuArrowNext.addEventListener('click', changeMenuPosition);
+menuArrowPrev.addEventListener('click', changeMenuPosition);
+
 /* получение данных с сервера и отрисовка меню городов */
 
 const locationLink = document.querySelector('.header_location.link');
-let result;
 const citiesList = document.querySelector('.city_container');
+const citySearchMenu = document.querySelector('.citySearchMenu');
 
 getData = async () => {
   const requestURL = '../mock/data.json';
@@ -18,17 +44,23 @@ getData = async () => {
 setLoader = () => {
   const loaderBox = document.createElement('li');
   loaderBox.classList.add('box');
-  citiesList.appendChild(loaderBox);
   loaderBox.classList.add('loader');
+  citiesList.appendChild(loaderBox);
 }; //создаем лоадер
 
+const closeDropMenu = (e) => {
+  const key = e.key;
+  if (e.keyCode == 27 && key === 'Escape') {
+    citySearchMenu.classList.add('notDisplay');
+  }
+}; //closeMemu
+
 openMenu = async () => {
-  const citySearchMenu = document.querySelector('.citySearchMenu');
   citySearchMenu.classList.toggle('notDisplay');
   setLoader();
   await getData();
   if (result) {
-    createCityLi();
+    createCityLi(result);
   } else {
     document.querySelector('.loader').remove();
     const errorMessage = document.createElement('li');
@@ -37,12 +69,16 @@ openMenu = async () => {
       'Список городов сейчас недоступен, но мы вот-вот все починим:)';
     citiesList.appendChild(errorMessage);
   }
-};
+  document.addEventListener('keydown', closeDropMenu);
+}; //openMenu
 
-createCityLi = () => {
-  document.querySelector('.loader').remove();
-  for (let key in result) {
-    if (result[key].length < 2) {
+createCityLi = (data) => {
+  if (document.querySelector('.loader')) {
+    document.querySelector('.loader').remove();
+  }
+
+  for (let key in data) {
+    if (data[key].length === data[key].value) {
       const cityItem = document.createElement('li');
       cityItem.classList.add('city_item');
       citiesList.appendChild(cityItem);
@@ -77,33 +113,7 @@ createCityLi = () => {
 
 locationLink.addEventListener('click', openMenu);
 
-/* прокрутка меню в шапке */
-
-const menuArrowNext = document.querySelector('.header_btn__next');
-const menuArrowPrev = document.querySelector('.header_btn__prev');
-const headerNav = document.querySelector('.header_navigation');
-const navLastChild = document.querySelector('.navigation_item:last-child');
-const navFirstChild = document.querySelector('.navigation_item:first-child');
-const nav2ndChild = document.querySelector('.navigation_item:nth-child(2)');
-/* Можно было бы применить эффект угасания текста только к первому и последнему элементам как в макете 
-и укоротить код, но при небольшой ширине первого красивее накладывать эффект на второй */
-
-const toggleMenuItemsClass = (el1, el2, className) => {
-  el1.classList.toggle(className);
-  el2.classList.toggle(className);
-};
-
-const changeMenuPosition = () => {
-  headerNav.classList.toggle('translateToLeft');
-  navFirstChild.classList.toggle('hidden');
-  toggleMenuItemsClass(navLastChild, nav2ndChild, 'active');
-  toggleMenuItemsClass(menuArrowNext, menuArrowPrev, 'notDisplay');
-};
-
-menuArrowNext.addEventListener('click', changeMenuPosition);
-menuArrowPrev.addEventListener('click', changeMenuPosition);
-
-/* Код для вкладки выбора регионов */
+/* фильтр по клику пользователя */
 
 const filteredCitiesContainer = document.querySelector(
   '.citySearchMenu_doneContainer'
@@ -165,17 +175,32 @@ addCityToFiltered = (e) => {
 
 citiesList.addEventListener('click', addCityToFiltered);
 
-saveCityBtn.addEventListener('click', function () {
-  console.log('hi');
-});
+/* динамический поиск */
 
-/* cityOffer = (e) => {
-  for (i = 0; i < cities.length; i++) {
-    if (cities[i].firstElementChild.textContent) {
-    }
+document.querySelector('.citySearch').onkeyup = function () {
+  let res = {};
+  let searchText = this.value.toLowerCase();
+  let stringLength = searchText.length;
+  if (stringLength > 1) {
+    for (let key in result)
+      for (let i = 0; i < result[key].length; i++) {
+        let cityName = result[key][i]
+          .split('')
+          .slice(0, stringLength)
+          .join('')
+          .toLowerCase();
+
+        if (cityName == searchText) {
+          citiesList.textContent = '';
+          let myValue = result[key][i];
+          res[key] = myValue;
+          createCityLi(res);
+          //console.log(res);
+        }
+      }
   }
-
-  console.log(e.target.value);
+  if (stringLength <= 1) {
+    citiesList.textContent = '';
+    createCityLi(result);
+  }
 };
-
-citySearch.addEventListener('input', cityOffer); */
