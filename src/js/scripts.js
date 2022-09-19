@@ -56,6 +56,7 @@ const closeDropMenu = (e) => {
 }; //closeMemu
 
 openMenu = async () => {
+  document.querySelector('.citySearch').value = '';
   citySearchMenu.classList.toggle('notDisplay');
   setLoader();
   await getData();
@@ -78,7 +79,7 @@ createCityLi = (data) => {
   }
 
   for (let key in data) {
-    if (data[key].length === data[key].value) {
+    if (data[key] === data[key].value) {
       const cityItem = document.createElement('li');
       cityItem.classList.add('city_item');
       citiesList.appendChild(cityItem);
@@ -89,7 +90,7 @@ createCityLi = (data) => {
       cityItemName.textContent = result[key];
       cityItem.appendChild(cityItemName);
     } else {
-      for (let oneCity of result[key]) {
+      for (let oneCity of data[key]) {
         const cityItem = document.createElement('li');
         cityItem.classList.add('city_item');
         citiesList.appendChild(cityItem);
@@ -190,16 +191,24 @@ document.querySelector('.citySearch').onkeyup = function () {
           .join('')
           .toLowerCase();
 
+        let cityState = key
+          .split('')
+          .slice(0, stringLength)
+          .join('')
+          .toLowerCase();
+
         if (cityName == searchText) {
           citiesList.textContent = '';
-          let myValue = result[key][i];
+          let myValue = [result[key][i]];
           res[key] = myValue;
           createCityLi(res);
-          //console.log(res);
+        } else if (cityState == searchText) {
+          citiesList.textContent = '';
+          res[key] = result[key];
+          createCityLi(res);
         }
       }
-  }
-  if (stringLength <= 1) {
+  } else if (stringLength === 0) {
     citiesList.textContent = '';
     createCityLi(result);
   }
