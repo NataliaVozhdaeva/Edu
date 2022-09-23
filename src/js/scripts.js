@@ -3,26 +3,30 @@
 const menuArrowNext = document.querySelector('.header_btn__next');
 const menuArrowPrev = document.querySelector('.header_btn__prev');
 const headerNav = document.querySelector('.header_navigation');
-const navLastChild = document.querySelector('.navigation_item:last-child');
-const navFirstChild = document.querySelector('.navigation_item:first-child');
-const nav2ndChild = document.querySelector('.navigation_item:nth-child(2)');
-/* Можно было бы применить эффект угасания текста только к первому и последнему элементам как в макете 
-и укоротить код, но при небольшой ширине первого красивее накладывать эффект на второй */
+const header = document.querySelector('.header');
+let translateSize = headerNav.offsetWidth - header.offsetWidth + 48;
+const navFirstChild = document.querySelector('.forEffectWithStart');
+const navLastChild = document.querySelector('.forEffectWithEnd');
 
 const toggleMenuItemsClass = (el1, el2, className) => {
   el1.classList.toggle(className);
   el2.classList.toggle(className);
 };
 
-const changeMenuPosition = () => {
-  headerNav.classList.toggle('translateToLeft');
-  navFirstChild.classList.toggle('hidden');
-  toggleMenuItemsClass(navLastChild, nav2ndChild, 'active');
+const changeMenuPositionToEnd = () => {
+  headerNav.style.transform = 'translateX(' + -translateSize + 'px) ';
   toggleMenuItemsClass(menuArrowNext, menuArrowPrev, 'notDisplay');
+  toggleMenuItemsClass(navFirstChild, navLastChild, 'active');
 };
 
-menuArrowNext.addEventListener('click', changeMenuPosition);
-menuArrowPrev.addEventListener('click', changeMenuPosition);
+const changeMenuPositionToStart = () => {
+  headerNav.style.transform = 'translateX(0)';
+  toggleMenuItemsClass(menuArrowNext, menuArrowPrev, 'notDisplay');
+  toggleMenuItemsClass(navFirstChild, navLastChild, 'active');
+};
+
+menuArrowNext.addEventListener('click', changeMenuPositionToEnd);
+menuArrowPrev.addEventListener('click', changeMenuPositionToStart);
 
 /* получение данных с сервера и отрисовка меню городов */
 
@@ -56,8 +60,9 @@ const closeDropMenu = (e) => {
 }; //closeMemu
 
 openMenu = async () => {
-  document.querySelector('.citySearch').value = '';
   citySearchMenu.classList.toggle('notDisplay');
+  document.querySelector('.citySearch').value = '';
+  citiesList.textContent = '';
   setLoader();
   await getData();
   if (result) {
@@ -176,7 +181,7 @@ addCityToFiltered = (e) => {
 
 citiesList.addEventListener('click', addCityToFiltered);
 
-/* динамический поиск */
+/* динамический поиск (нужно набрать ДВЕ первых буквы) */
 
 document.querySelector('.citySearch').onkeyup = function () {
   let res = {};
@@ -211,5 +216,5 @@ document.querySelector('.citySearch').onkeyup = function () {
   } else if (stringLength === 0) {
     citiesList.textContent = '';
     createCityLi(result);
-  }
+  } //обрабатываем совпадения с поисковым запросом пользователя
 };

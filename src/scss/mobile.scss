@@ -1,0 +1,222 @@
+@media only screen and (min-width: 991px) and (max-width: 1199px) {
+  .header {
+    max-width: 90vw;
+    margin: auto;
+
+    &_top {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin: 24px 24px 26px;
+    }
+
+    &_search {
+      margin: 0;
+      flex-grow: 1;
+      width: none;
+    }
+
+    &_location {
+      margin: 0;
+    }
+
+    &_navigation {
+      font-size: 12px;
+      column-gap: 0;
+    }
+  }
+
+  .navigation_item {
+    white-space: normal;
+  }
+
+  .label__search::after {
+    display: none;
+  }
+
+  .forEffectWithEnd,
+  .forEffectWithStart {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .header {
+    max-width: 999px;
+    margin: 24px;
+    position: relative;
+    margin: auto;
+
+    &_top {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin: 24px 24px 26px;
+    }
+
+    &_logo {
+      order: -1;
+    }
+
+    &_location {
+      margin: 0;
+    }
+
+    &_search {
+      margin: 0;
+    }
+
+    &_navContainer {
+      display: none;
+    }
+  }
+
+  .sublink {
+    position: absolute;
+  }
+
+  .user {
+    &_name {
+      display: none;
+    }
+
+    &_avatar {
+      display: none;
+    }
+
+    &_likeCounter {
+      margin: 0;
+    }
+  }
+
+  .label__search::after {
+    display: none;
+  }
+
+  .navigation_item:hover > .sublink,
+  .sublink:hover {
+    visibility: visible;
+  }
+
+  .citySearchMenu {
+    top: 55px;
+    left: 150px;
+  }
+
+  .btn__mobileMenu {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url('../img/icons/menu.png');
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .header {
+    max-width: 740px;
+    padding: 16px 25px;
+    position: relative;
+    margin: auto;
+
+    &_top {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+    }
+
+    &_logo {
+      order: -1;
+    }
+
+    &_navContainer {
+      display: none;
+    }
+
+    &_search {
+      display: none;
+    }
+  }
+
+  .btn__mobileMenu {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url('../img/icons/menu.png');
+  }
+
+  .label__search {
+    display: none;
+  }
+
+  .user {
+    &_name {
+      display: none;
+    }
+
+    &_avatar {
+      display: none;
+    }
+
+    &_likeCounter {
+      margin: 0;
+    }
+  }
+
+  .citySearchMenu {
+    top: 55px;
+    left: calc(100% - 440px);
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .header {
+    max-width: 360px;
+    padding: 16px 8px;
+    position: relative;
+    margin: auto;
+
+    &_top {
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+    }
+
+    &_location.link {
+      display: none;
+    }
+
+    &_navContainer {
+      display: none;
+    }
+
+    &_search {
+      display: none;
+    }
+  }
+
+  .btn__mobileMenu {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url('../img/icons/menu.png');
+  }
+
+  .label__search {
+    display: none;
+  }
+
+  .user {
+    &_name {
+      display: none;
+    }
+
+    &_avatar {
+      display: none;
+    }
+
+    &_likeCounter {
+      margin: 0;
+    }
+  }
+}

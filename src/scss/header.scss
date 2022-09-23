@@ -1,15 +1,18 @@
 $hover-color: #f1f1f1;
 
+.btn__mobileMenu {
+  display: none;
+}
+
 .header {
-  max-width: 1920px;
-  padding: 24px 352px 18px;
+  max-width: 1216px;
+  margin: auto;
   position: relative;
   &_top {
-    width: 100%;
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 26px;
+    margin: 24px 24px 26px;
   }
   &_btn {
     width: 32px;
@@ -19,14 +22,14 @@ $hover-color: #f1f1f1;
 
     &__prev {
       transform: rotate(180deg);
-      top: 92px;
-      left: 345px;
+      top: 67px;
+      left: 0;
       z-index: 1;
     }
 
     &__next {
-      top: 92px;
-      right: 345px;
+      top: 67px;
+      right: 0;
       z-index: 1;
     }
   }
@@ -34,6 +37,7 @@ $hover-color: #f1f1f1;
     display: flex;
     align-items: center;
     margin-right: 61px;
+
     &_icon {
       margin-right: 8px;
       border-radius: 50%;
@@ -44,35 +48,86 @@ $hover-color: #f1f1f1;
   }
   &_navContainer {
     display: flex;
+    margin: 24px 24px 18px;
   }
 
   &_navigation {
     display: flex;
     column-gap: 30px;
     align-items: center;
+    position: relative;
+  }
+
+  &_search {
+    width: 592px;
+    height: 48px;
+    background: $hover-color;
+    border-radius: 100px;
+    border: none;
+    text-align: center;
+    padding: 8px;
+    line-height: 22px;
+    margin-right: 174px;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: silver 2px solid;
+    }
   }
 }
 
-.translateToLeft {
-  transform: translateX(-30px);
-}
+.forEffectWithEnd {
+  position: absolute;
+  width: 200px;
+  height: 25px;
+  bottom: 0;
+  right: 0vw;
 
-.search {
-  width: 592px;
-  height: 48px;
-  background: $hover-color;
-  border-radius: 100px;
-  border: none;
-  text-align: center;
-  padding: 8px;
-  line-height: 22px;
-  margin-right: 174px;
-  box-sizing: border-box;
-
-  &:focus {
-    outline: silver 2px solid;
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgb(255, 255, 255, 1) 45%
+    );
   }
 }
+
+.forEffectWithStart {
+  position: absolute;
+  width: 200px;
+  height: 25px;
+  bottom: 0;
+  left: 0;
+
+  &::before {
+    content: '';
+    z-index: 1;
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0px;
+    background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0),
+      rgb(255, 255, 255, 1) 45%
+    );
+  }
+}
+
+.active,
+.active::after {
+  display: none;
+}
+
 .label__search {
   position: relative;
 
@@ -136,49 +191,6 @@ $hover-color: #f1f1f1;
   &:active {
     background-color: $hover-color;
   }
-
-  &:last-child {
-    position: relative;
-
-    &::after {
-      content: '';
-      display: block;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 1) 60%
-      );
-    }
-  }
-
-  &:nth-child(2) {
-    position: relative;
-
-    &::after {
-      content: '';
-      display: block;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(
-        to left,
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 1) 90%
-      );
-    }
-  }
-
-  &.active::after {
-    display: none;
-  }
 }
 
 .activeCity {
@@ -215,7 +227,7 @@ $hover-color: #f1f1f1;
   z-index: 1;
   position: absolute;
   top: 70px;
-  left: 456px;
+  left: 100px;
   padding: 24px 0 0;
   display: flex;
   flex-direction: column;
@@ -354,11 +366,11 @@ $hover-color: #f1f1f1;
     top: 25%;
     position: absolute;
     content: '';
-    animation: loader-27 2s linear infinite alternate;
+    animation: loader 2s linear infinite alternate;
   }
 }
 
-@keyframes loader-27 {
+@keyframes loader {
   0% {
     left: 0;
   }

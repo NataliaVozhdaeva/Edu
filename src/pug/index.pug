@@ -8,6 +8,8 @@ html(lang="ru")
 	body.body
 		header.header
 			section.header_top
+				button.btn.btn__mobileMenu 
+					span.hidden Открыть мобильное меню
 				img.header_logo.logo(alt="логотип" width='88' height='24' src='./img/content/logo.svg')
 				a.header_location.link(href="#")
 					img.header_location_icon(alt="выбор региона" width='32' height='32' src='./img/icons/city.png')
@@ -27,9 +29,10 @@ html(lang="ru")
 				button.btn.header_btn.header_btn__prev.notDisplay
 					span.hidden прокрутить меню назад
 				ul.navigation.list.header_navigation
+					li.forEffectWithStart.active
 					li.navigation_item
 						a.navigation_link.link(href="#") Вузы
-					li.navigation_item.active
+					li.navigation_item
 						a.navigation_link.link(href="#") Колледжи
 					li.navigation_item 
 						a.navigation_link.link(href="#") Техникумы
@@ -50,6 +53,7 @@ html(lang="ru")
 						a.navigation_link.link(href="#") Учебным заведениям
 					li.navigation_item
 						a.navigation_link.link(href="#") Тест на профориентацию
+					li.forEffectWithEnd
 				button.btn.header_btn.header_btn__next
 					span.hidden прокрутить меню дальше 
 		main.main
