@@ -21,13 +21,21 @@
     }
 
     &_navigation {
+      width: 100%;
       font-size: 12px;
       column-gap: 0;
+      justify-content: space-between;
     }
+  }
+
+  .header_btn {
+    display: none;
   }
 
   .navigation_item {
     white-space: normal;
+    text-align: center;
+    padding: 2px 5px;
   }
 
   .label__search::after {

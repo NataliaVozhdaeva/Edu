@@ -23,18 +23,16 @@ function buildHTML() {
         pretty: true,
       })
     )
-    .pipe(dest('dist'))
     .pipe(dest('src'))
     .pipe(browserSync.stream());
 }
 
 function buildSass() {
-  return (
-    src('src/scss/**/*.scss')
-      .pipe(sourcemaps.init())
-      .pipe(sass())
-      .on('error', sass.logError)
-      /*  .pipe(
+  return src('src/scss/**/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .on('error', sass.logError)
+    .pipe(
       postcss([
         autoprefixer({
           overrideBrowserslist: ['last 2 versions'],
@@ -42,22 +40,17 @@ function buildSass() {
         cssnano(),
       ])
     )
-    .pipe(rename('styles.min.css')) 
-      .pipe(dest('dist/css'))*/
-      .pipe(dest('src/css'))
-      .pipe(sourcemaps.write('.'))
-      .pipe(browserSync.stream())
-  );
+    .pipe(rename('styles.min.css'))
+    .pipe(dest('src/css'))
+    .pipe(sourcemaps.write('.'))
+    .pipe(browserSync.stream());
 }
 
 function buildJs() {
-  return (
-    src('src/js/scripts.js')
-      //.pipe(rename('scripts.min.js'))
-      //.pipe(dest('src/js'))
-      // .pipe(dest('dist/js'))
-      .pipe(browserSync.stream())
-  );
+  return src('src/js/scripts.js')
+    .pipe(rename('scripts.min.js'))
+    .pipe(dest('src/js'))
+    .pipe(browserSync.stream());
 }
 
 function serve() {
@@ -70,13 +63,7 @@ function cleanDist() {
   return del('dist/**/*', { force: true });
 }
 
-function copy() {
-  return src(['src/img/**/*.*', 'src/css/**/*.css'], {
-    base: 'src/',
-  }).pipe(dest('dist'));
-}
-
-exports.build = series(cleanDist, buildHTML, buildSass, buildJs, copy);
+exports.build = series(cleanDist, buildHTML, buildSass, buildJs);
 exports.default = series(
   [buildHTML, buildSass, buildJs],
   parallel(browsersync, serve)
